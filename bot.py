@@ -51,7 +51,7 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
     if message.content.lower().startswith('help'):
-        await message.channel.send('Use ,help to access the help menu.')
+        await message.channel.send('Use %help to access the help menu.')
     await bot.process_commands(message)
 
 @bot.command(aliases=['m'])
