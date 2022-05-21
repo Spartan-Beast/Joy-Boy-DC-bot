@@ -4,19 +4,21 @@ from cogs.jsonload import *
 import random
 import json
 import os
+from dotenv import load_dotenv, find_dotenv
 
 if os.path.exists(fr"{get_path()}/config.json"):
     with open('./config.json') as file:
         configData = json.load(file)
 else:
-    configTemplate = {"Token": ""}
+    configTemplate = {"Prefix": ""}
     with open(fr"{get_path()}/config.json", 'w+') as file:
         json.dump(configTemplate, file)
 
+load_dotenv(find_dotenv())        
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix="%", intents=intents)
-token = configData["Token"]
+bot = commands.Bot(command_prefix=configData["Prefix"], intents=intents)
+token = os.getenv("Token")
 
 bot.colors = {
     "WHITE": 0xFFFFFF,
@@ -51,9 +53,72 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
     if message.content.lower().startswith('help'):
-        await message.channel.send('Use %help to access the help menu.')
+        await message.channel.send(f'Use {configData["Prefix"]}help to access the help menu.')
     await bot.process_commands(message)
 
+@bot.command(aliases=['l'])
+@commands.has_permissions(send_messages=True)
+async def luffy(ctx):
+    embed = discord.Embed(title="Luffy's epic fights", description="Please select one of the following\n(type the command without the prefix):\nKuro\nDon Krieg\nArlong\nCrocodile\nEnel\nLuffy vs Blueno\nRob Lucci\nGecko Moria\nMagellan\nHody Jones\nSentomaru\nPacifista\nCaesar\n||Doflamingo||\n||Cracker||\n||Katakuri||\n||Kaido||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['z'])
+@commands.has_permissions(send_messages=True)
+async def zoro(ctx):
+    embed = discord.Embed(title="Zoro's epic fights", description="Please select one of the following\n(type the command without the prefix):\nMorgan\nCabaji\nNyaban Brothers\nMihawk\nHachi\nTashigi\nDaz Bones\nBraham\nGroggy monsters\nFranky Family\nT Bone\nOhm\nKaku\nShu\nRyuma\nKuma\nHumandrills\nZoro vs Hody\nHyouzou\nMonet\nFujitora\n||Pica||\n||Carrot||\n||Samurais||\n||Denjiro||\n||Hawkins||\n||Kamazou||\n||Oniwabanshu||\n||Killer||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['s'])
+@commands.has_permissions(send_messages=True)
+async def sanji(ctx):
+    embed = discord.Embed(title="Sanji's epic fights", description="Please select one of the following\n(type the command without the prefix):\nGin and Pearl\nKurobi\nUnluckies\nBon Clay\nEnel\nSatori\nGroggy monsters\nAokiji\nFranky\nSanji vs Blueno\nKalifa\nJabura\nAbsalom\nKuma\nKizaru\nIvankov\nWadatsumi\nVergo\nSanji vs Doflamingo\n||Judge||\n||Oven||\n||Big Mom Pirates||\n||Daifuku||\n||Kyoshiro Family||\n||X-Drake||\n||Page One||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['n'])
+@commands.has_permissions(send_messages=True)
+async def nami(ctx):
+    embed = discord.Embed(title="Nami's epic fights", description="Please select one of the following\n(type the command without the prefix):\nMiss Valentine\nMiss Doublefinger\nHotori and Kotori\nKumadori\nNami vs Kalifa\n||Cracker||\n||Big Mom||\n||Ulti||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['u'])
+@commands.has_permissions(send_messages=True)
+async def usopp(ctx):
+    embed = discord.Embed(title="Usopp's epic fights", description="Please select one of the following\n(type the command without the prefix):\nChew\nDaddy Masterson\nMr 4 and Miss Merry Christmas\nSatori\nPerona\nTrebol and Sugar\nSugar\n||Onigashima guards||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['r'])
+@commands.has_permissions(send_messages=True)
+async def robin(ctx):
+    embed = discord.Embed(title="Robin's epic fights", description="Please select one of the following\n(type the command without the prefix):\nPell\nTashigi\nRobin vs Crocodile\nYama\nSpandam\nTararan\nDr Hogback", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['sk'])
+@commands.has_permissions(send_messages=True)
+async def sogeking(ctx):
+    embed = discord.Embed(title="Sogeking's epic fights", description="Please select one of the following\n(type the command without the prefix):\nMarines\nSogeking vs Kumacy", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['songs'])
+@commands.has_permissions(send_messages=True)
+async def opsongs(ctx):
+    embed = discord.Embed(title="One Piece songs", description="Please select one of the following\n(type the command without the prefix):\nLuffy's baka song\nSogeking theme song\nBink's sake\n||Oden song||", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+    
+@bot.command(aliases=['sh'])
+@commands.has_permissions(send_messages=True)
+async def strawhats(ctx):
+    embed = discord.Embed(title="Straw Hats' epic fights", description="Please select one of the following\n(type the command without the prefix):\nSabaody\nOars", color=ctx.author.color)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+    
 @bot.command(aliases=['m'])
 @commands.has_permissions(send_messages=True)
 async def meme(ctx):
