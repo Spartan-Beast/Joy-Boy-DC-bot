@@ -25,7 +25,7 @@ class Commands(commands.Cog):
     @commands.group(invoke_wihtout_command=True)
     async def help(self, ctx):
         embed = discord.Embed(title='Help', description=f'Here is the list of commands for this bot:\nUse {configData["Prefix"]}help <cmd> for extended information on that command.', color=ctx.author.color)
-        embed.add_field(name='Joy Boy commands', value='joke, opjoke, bmjoke, meme', inline=False)
+        embed.add_field(name='Joy Boy commands', value='joke, opjoke, bmjoke, meme, ameme, tmeme, bmeme', inline=False)
         embed.add_field(name='Fights', value='straw hats, luffy, zoro, sanji, nami, robin, usopp, sogeking', inline=False)
         embed.add_field(name='Miscellaneous', value='clear', inline=False)
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
@@ -43,7 +43,7 @@ class Commands(commands.Cog):
     async def bmjoke(self, ctx):
         embed = discord.Embed(title='Big Mom joke', description='Sends a random Big Mom ~~joke~~ fact.', color=ctx.author.color)
         embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}bmjoke')
-        embed.add_field(name='Command shortcuts', value=f'{configData["Prefix"]}bm')
+        embed.add_field(name='Command shortcuts', value=f'{configData["Prefix"]}btm')
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
         await ctx.send(embed=embed)
     
@@ -57,7 +57,7 @@ class Commands(commands.Cog):
     
     @help.command()
     async def joke(self, ctx):
-        embed = discord.Embed(title='Message', description='Sends a random joke.', color=ctx.author.color)
+        embed = discord.Embed(title='Joke', description='Sends a random joke.', color=ctx.author.color)
         embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}joke')
         embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}j')
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
@@ -65,9 +65,33 @@ class Commands(commands.Cog):
     
     @help.command()
     async def meme(self, ctx):
-        embed = discord.Embed(title='Message', description='Sends a random One Piece meme.', color=ctx.author.color)
+        embed = discord.Embed(title='Meme', description='Sends a random One Piece meme.', color=ctx.author.color)
         embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}meme')
         embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}m')
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+    
+    @help.command()
+    async def tmeme(self, ctx):
+        embed = discord.Embed(title='Texas meme', description='Sends a random Texas meme.', color=ctx.author.color)
+        embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}tmeme')
+        embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}tm')
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+    
+    @help.command()
+    async def bmeme(self, ctx):
+        embed = discord.Embed(title='British meme', description='Sends a random British meme.', color=ctx.author.color)
+        embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}bmeme')
+        embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}bm')
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+    
+    @help.command()
+    async def ameme(self, ctx):
+        embed = discord.Embed(title='Anime meme', description='Sends a random anime meme.', color=ctx.author.color)
+        embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}ameme')
+        embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}am')
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
         await ctx.send(embed=embed)
     
