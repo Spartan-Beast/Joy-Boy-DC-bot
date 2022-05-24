@@ -1,0 +1,13 @@
+async-generator==1.10
+async-timeout==3.0.1
+discord==1.7.3
+discord.py==1.7.3
+distro==1.5.0
+python-apt==2.2.1
+python-dateutil==2.8.1
+python-debian===0.1.39ubuntu1
+SecretStorage==3.3.1
+simplejson==3.17.2
+ssh-import-id==5.11
+ubuntu-advantage-tools==27.7
+ubuntu-drivers-common==0.0.0
