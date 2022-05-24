@@ -129,6 +129,36 @@ async def meme(ctx):
     embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
     await ctx.send(embed=embed)
 
+@bot.command(aliases=['tm'])
+@commands.has_permissions(send_messages=True)
+async def tmeme(ctx):
+    urls = open('texas_memes.json',)
+    tmemes = json.load(urls)
+    embed = discord.Embed(title="~~Texas~~ Teexus meme", description="~~Funny~~ True Texas meme", color=random.choice(bot.color_list))
+    embed.set_image(url=random.choice(tmemes))
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=['btm'])
+@commands.has_permissions(send_messages=True)
+async def bmeme(ctx):
+    urls = open('brit_memes.json',)
+    bmemes = json.load(urls)
+    embed = discord.Embed(title="~~British~~ Bri'ish meme", description="~~Funny~~ True Bri'ish meme", color=random.choice(bot.color_list))
+    embed.set_image(url=random.choice(bmemes))
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+    
+@bot.command(aliases=['am'])
+@commands.has_permissions(send_messages=True)
+async def ameme(ctx):
+    urls = open('anime_memes.json',)
+    amemes = json.load(urls)
+    embed = discord.Embed(title="Anime meme", description="Funny anime meme", color=random.choice(bot.color_list))
+    embed.set_image(url=random.choice(amemes))
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+
 @bot.command(aliases=['j'])
 @commands.has_permissions(send_messages=True)
 async def joke(ctx):
