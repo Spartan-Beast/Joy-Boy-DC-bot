@@ -197,6 +197,33 @@ async def opjoke(ctx):
 async def clear(ctx, amount=1):
     await ctx.channel.purge(limit=amount)
 
+@bot.command()
+@commands.has_guild_permissions(manage_messages=True)
+async def announce(ctx, *, msg=None):
+    if msg == None:
+      return
+    else:
+      announcements = discord.utils.get(ctx.guild.channels, name="announcements")
+      newscoo = discord.utils.get(ctx.guild.channels, name="news-coo")
+    
+      sezai = discord.utils.get(ctx.guild.roles, name='news coo')
+      announcement_role = discord.utils.get(ctx.guild.roles, name="announcements")
+      testping = discord.utils.get(ctx.guild.roles, name="test ping")
+
+      embed = discord.Embed(title='Sekai Keizai Shinbun (World Economic Journal)', description='News Coo delivery :dove:', color=random.choice(bot.color_list))
+      embed.set_image(url='https://static.wikia.nocookie.net/2b8a1a82-f3a5-4081-8662-b4125cadd537/scale-to-width/755')
+      embed.add_field(name='Joy Boy says:', value=msg, inline=False)
+      embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Announced by {ctx.author.name}")
+      
+      if newscoo:
+        await newscoo.send(f"{announcement_role.mention}")
+        await newscoo.send(embed=embed)
+      if announcements:
+        await announcements.send(f"{announcement_role.mention}")
+        await announcements.send(embed=embed)
+      else:
+        await ctx.send('No announcements channel. Make a channel called announcements.')
+
 if __name__ == '__main__':
     for file in os.listdir("./cogs"):
         if file.endswith('.py'):
