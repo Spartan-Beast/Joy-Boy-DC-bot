@@ -170,7 +170,7 @@ async def joke(ctx):
     embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
     await ctx.send(embed=embed)
     
-@bot.command(aliases=['dj, djoke'])
+@bot.command(aliases=['dj', 'djoke'])
 @commands.has_permissions(send_messages=True)
 async def darkjoke(ctx):
     djokes = open('dark_jokes.json',)
