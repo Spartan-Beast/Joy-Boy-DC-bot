@@ -25,7 +25,7 @@ class Commands(commands.Cog):
     @commands.group(invoke_wihtout_command=True)
     async def help(self, ctx):
         embed = discord.Embed(title='Help', description=f'Here is the list of commands for this bot:\nUse {configData["Prefix"]}help <cmd> for extended information on that command.', color=ctx.author.color)
-        embed.add_field(name='Joy Boy commands', value='joke, opjoke, bmjoke, meme, ameme, tmeme, bmeme', inline=False)
+        embed.add_field(name='Joy Boy commands', value='joke, darkjoke, opjoke, bmjoke, meme, ameme, tmeme, bmeme', inline=False)
         embed.add_field(name='Fights', value='straw hats, luffy, zoro, sanji, nami, robin, usopp, sogeking', inline=False)
         embed.add_field(name='Mod commands', value='announce, clear', inline=False)
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
@@ -67,6 +67,14 @@ class Commands(commands.Cog):
         embed = discord.Embed(title='Joke', description='Sends a random joke.', color=ctx.author.color)
         embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}joke')
         embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}j')
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+    
+    @help.command()
+    async def darkjoke(self, ctx):
+        embed = discord.Embed(title='Dark joke', description='Sends a random dark joke.', color=ctx.author.color)
+        embed.add_field(name='**Syntax**', value=f'{configData["Prefix"]}darkjoke')
+        embed.add_field(name='Command shortcut', value=f'{configData["Prefix"]}dj, {configData["Prefix"]}djoke')
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
         await ctx.send(embed=embed)
     
