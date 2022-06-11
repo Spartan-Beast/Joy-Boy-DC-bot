@@ -1,10 +1,7 @@
-import discord
 import sys
 import json
 import traceback
-from datetime import datetime
-from random import choice
-from discord.ext import commands, tasks
+from discord.ext import commands
 
 class Events(commands.Cog):
     def __init__(self, bot):
@@ -27,7 +24,7 @@ class Events(commands.Cog):
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('Please enter all the necessary arguments.')
         elif isinstance(error, commands.BotMissingPermissions):
-            await ctx.send('The bot doesn\'t have the permission for this. Give this bot admin permissions.')
+            await ctx.send('The bot doesn\'t have the permission for this. Give this bot the appropriate permissions.')
         elif isinstance(error, commands.BotMissingRole):
             await ctx.send('The bot doesn\'t have the required role. Give this bot the appropriate role.')
         elif isinstance(error, commands.RoleNotFound):
@@ -36,13 +33,6 @@ class Events(commands.Cog):
             # All other Errors not returned come here. And we can just print the default TraceBack.
             print(f'Ignoring exception in command {ctx.command}:', file=sys.stderr)
             traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
-
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, (commands.CommandNotFound, commands.UserInputError)):
-            await ctx.send('Incorrect command syntax or command not found.')
-        if isinstance(error, commands.CheckFailure):
-            await ctx.send('You don\'t have the permission to use this command.')
     
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -252,15 +242,19 @@ class Events(commands.Cog):
         if message.content.lower().startswith('sabaody'):
             await message.channel.send(fight["Sabaody"])
         if message.content.lower().startswith('oars'):
-            await message.channel.send(fight["Oars"])
+            await message.channel.send(fight["Straw Hats vs Oars"])
         if message.content.lower().startswith('baka song') or message.content.lower().startswith('luffy\'s baka song'):
             await message.channel.send(fight["Baka song"])
         if message.content.lower().startswith('sogeking theme song'):
             await message.channel.send(fight["Sogeking theme song"])
+        if message.content.lower().startswith('sogeking theme 2'):
+            await message.channel.send(fight["Sogeking theme 2"])
         if message.content.lower().startswith('bink\'s sake'):
             await message.channel.send(fight["Binks sake"])
         if message.content.lower().startswith('oden song'):
             await message.channel.send(fight["Oden song"])
+        if message.content.lower().startswith('cat viper song'):
+            await message.channel.send(fight["Cat Viper song"])
     
 def setup(bot):
     bot.add_cog(Events(bot))
